@@ -46,22 +46,14 @@
     </script>
 
     <style>
-        html {
-            scroll-behavior: smooth;
-        }
-
-        input,
-        textarea,
-        select {
-            font-size: 16px;
-        }
-
+        html { scroll-behavior: smooth; }
+        input, textarea, select { font-size: 16px; }
         body {
             min-height: 100vh;
             min-height: 100dvh;
             padding-bottom: max(4rem, env(safe-area-inset-bottom));
             background-color: #fbe8ec;
-            background-image: 
+            background-image:
                 radial-gradient(circle at 10% 20%, rgba(255, 225, 233, 0.8) 0%, transparent 40%),
                 radial-gradient(circle at 90% 80%, rgba(247, 214, 222, 0.9) 0%, transparent 50%),
                 radial-gradient(circle at 50% 50%, rgba(253, 237, 241, 0.6) 0%, transparent 70%);
@@ -69,99 +61,19 @@
             color: #faaa60;
             overflow-x: hidden;
         }
-
-        /* Canvas de Mariposas */
-        #butterflyCanvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 10;
-        }
-
-        .glass-card {
-            background: rgba(255, 255, 255, 0.75);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.9);
-            box-shadow: 0 10px 30px rgba(168, 101, 35, 0.08);
-        }
-
-        .section-divider {
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(168, 101, 35, 0.3), transparent);
-            position: relative;
-            margin: 2.5rem 0;
-        }
-
-        .section-divider::after {
-            content: "◇";
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: #fbe8ec;
-            padding: 0 12px;
-            color: #a86523;
-            font-size: 14px;
-        }
-
-        .golden-btn {
-            background: linear-gradient(135deg, #a86523 0%, #834c18 100%);
-            color: white;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(131, 76, 24, 0.25);
-        }
-
-        .golden-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(131, 76, 24, 0.35);
-            background: linear-gradient(135deg, #b8722b 0%, #93561c 100%);
-        }
-
-        .fade-in-up {
-            animation: fadeInUp 1s ease-out forwards;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(25px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        #welcomeScreen {
-            background: rgba(251, 232, 236, 0.96);
-        }
-
-        #welcomeScreen.is-hidden {
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        #musicToggle {
-            z-index: 30;
-        }
-
-        #openInvitation {
-            width: 220px;
-            padding-top: 0.35rem;
-            padding-bottom: 0.35rem;
-            bottom: 1rem;
-            transform: translateX(-50%);
-            background: linear-gradient(135deg, #c27a2b 0%, #a96120 100%);
-        }
-
-        #openInvitation:hover {
-            transform: translateX(-50%);
-            background: linear-gradient(135deg, #d18b3d 0%, #b8732d 100%);
-        }
+        #butterflyCanvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 10; }
+        .glass-card { background: rgba(255, 255, 255, 0.75); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.9); box-shadow: 0 10px 30px rgba(168, 101, 35, 0.08); }
+        .section-divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(168, 101, 35, 0.3), transparent); position: relative; margin: 2.5rem 0; }
+        .section-divider::after { content: "◇"; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: #fbe8ec; padding: 0 12px; color: #a86523; font-size: 14px; }
+        .golden-btn { background: linear-gradient(135deg, #a86523 0%, #834c18 100%); color: white; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(131, 76, 24, 0.25); }
+        .golden-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(131, 76, 24, 0.35); background: linear-gradient(135deg, #b8722b 0%, #93561c 100%); }
+        .fade-in-up { animation: fadeInUp 1s ease-out forwards; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(25px); } to { opacity: 1; transform: translateY(0); } }
+        #welcomeScreen { background: rgba(251, 232, 236, 0.96); }
+        #welcomeScreen.is-hidden { opacity: 0; pointer-events: none; }
+        #musicToggle { z-index: 30; }
+        #openInvitation { width: 220px; padding-top: 0.35rem; padding-bottom: 0.35rem; bottom: 1rem; transform: translateX(-50%); background: linear-gradient(135deg, #c27a2b 0%, #a96120 100%); }
+        #openInvitation:hover { transform: translateX(-50%); background: linear-gradient(135deg, #d18b3d 0%, #b8732d 100%); }
     </style>
 </head>
 <body class="font-sans min-h-screen relative pb-16">
@@ -170,11 +82,11 @@
     <section id="welcomeScreen" class="fixed inset-0 z-40 flex min-h-screen items-center justify-center p-6 text-center transition-opacity duration-700">
         <div class="glass-card relative aspect-[2/3] max-h-[calc(100vh-2rem)] w-[calc((100vh-2rem)*2/3)] max-w-[calc(100vw-2rem)] overflow-hidden rounded-3xl p-0">
             <img
-    src="./fondo-a.jpg"
-    alt="Invitación de los XV de Catalina"
-    class="absolute inset-0 h-full w-full object-cover"
-    onerror="this.onerror=null; this.src='https://placehold.co/800x1200/fbe8ec/a86523?text=Invitación+de+Catalina';"
->
+                src="./fondo-A.jpg"
+                alt="Invitación de los XV de Catalina"
+                class="absolute inset-0 h-full w-full object-cover"
+                onerror="this.onerror=null; this.src='https://placehold.co/800x1200/fbe8ec/a86523?text=Invitación+de+Catalina';"
+            >
             <button id="openInvitation" type="button" class="golden-btn absolute bottom-4 left-1/2 -translate-x-1/2 rounded-xl text-sm font-semibold shadow-lg">
                 Abrir Invitación
             </button>
@@ -189,199 +101,60 @@
         <i id="musicIcon" class="fa-solid fa-volume-high text-lg"></i>
     </button>
 
-    <!-- Canvas para la animación de mariposas tipo Monarca Rosada -->
     <canvas id="butterflyCanvas"></canvas>
-
-    <!-- Toast de Notificaciones -->
     <div id="toast" class="fixed bottom-5 right-5 z-50 transform translate-y-20 opacity-0 transition-all duration-300 glass-card px-6 py-4 rounded-xl border-l-4 border-accent-gold shadow-2xl flex items-center gap-3">
         <i id="toastIcon" class="fa-solid fa-circle-check text-accent-gold text-xl"></i>
         <span id="toastMsg" class="text-sm font-medium text-accent-dark"></span>
     </div>
 
     <div class="max-w-2xl mx-auto px-4 py-6 relative z-20 space-y-10">
-
-        <!-- ================= SECCIÓN 1: PORTADA ================= -->
         <section class="glass-card rounded-3xl p-4 sm:p-6 text-center fade-in-up overflow-hidden">
-            <!-- Imagen principal de Portada integrada -->
             <div class="relative rounded-2xl overflow-hidden shadow-sm bg-white/50 p-2 border border-rose-100">
-                <img src="./portada-1.png" alt="Mis XV Años Catalina" class="w-full h-auto rounded-xl object-contain mx-auto max-h-[420px]" 
+                <img src="./portada-1.png" alt="Mis XV Años Catalina" class="w-full h-auto rounded-xl object-contain mx-auto max-h-[420px]"
                      onerror="this.onerror=null; this.src='https://placehold.co/600x400/fbe8ec/a86523?text=Mis+XV+Años+Catalina';">
             </div>
-
             <div class="mt-6">
-             <!-- Fecha Destacada del Evento -->
-                <div class="inline-flex flex-wrap items-center justify-center gap-2 bg-rose-100/80 px-4 py-2 rounded-full border border-rose-200 text-accent-dark font-serif text-sm sm:text-base font-semibold mb-3">
-    <i class="fa-regular fa-calendar-check text-accent-gold"></i>
-    <span>Sábado, 17 de Octubre de 2026 - 21:00 hs</span>
-    <span>Se ruega puntualidad</span>
-</div>
-                <p class="font-script text-3xl sm:text-4xl text-accent-gold">¡Estás invitado a celebrar conmigo!</p>
-            <div class="mt-6">
-                   
-                <div class="w-32 h-px bg-gradient-to-r from-transparent via-accent-gold to-transparent mx-auto my-6 relative">
-                    <span class="absolute -top-2.5 left-1/2 transform -translate-x-1/2 bg-[#fbe8ec] px-2 text-accent-gold text-xs">◇</span>
+                <div class="inline-flex flex-wrap items-center justify-center gap-2 bg-rose-100/80 px-4 py-2 rounded-full border border-rose-200 text-accent-dark font-serif text-sm sm:text-base font-semibold">
+                    <i class="fa-regular fa-calendar-check text-accent-gold"></i>
+                    <span>Sábado, 17 de Octubre de 2026 - 21:00 hs</span>
+                    <span>Se ruega puntualidad</span>
                 </div>
-
-                <!-- Cuenta Regresiva Elegante -->
-                <p class="font-serif text-xs tracking-widest uppercase text-accent-gold mb-3">Faltan tan solo</p>
-                <div class="grid grid-cols-4 gap-2 sm:gap-4 max-w-xs sm:max-w-sm mx-auto">
-                    <div class="glass-card p-3 rounded-2xl text-center border border-rose-200">
-                        <span id="days" class="block font-serif text-2xl sm:text-3xl font-bold text-accent-dark">00</span>
-                        <span class="text-[10px] sm:text-xs text-accent-gold font-medium uppercase tracking-wider">Días</span>
-                    </div>
-                    <div class="glass-card p-3 rounded-2xl text-center border border-rose-200">
-                        <span id="hours" class="block font-serif text-2xl sm:text-3xl font-bold text-accent-dark">00</span>
-                        <span class="text-[10px] sm:text-xs text-accent-gold font-medium uppercase tracking-wider">Hs</span>
-                    </div>
-                    <div class="glass-card p-3 rounded-2xl text-center border border-rose-200">
-                        <span id="minutes" class="block font-serif text-2xl sm:text-3xl font-bold text-accent-dark">00</span>
-                        <span class="text-[10px] sm:text-xs text-accent-gold font-medium uppercase tracking-wider">Min</span>
-                    </div>
-                    <div class="glass-card p-3 rounded-2xl text-center border border-rose-200">
-                        <span id="seconds" class="block font-serif text-2xl sm:text-3xl font-bold text-accent-dark">00</span>
-                        <span class="text-[10px] sm:text-xs text-accent-gold font-medium uppercase tracking-wider">Seg</span>
+                <p class="font-script text-3xl sm:text-4xl text-accent-gold">¡Estás invitado a celebrar conmigo!</p>
+                <div class="mt-6">
+                    <div class="w-32 h-px bg-gradient-to-r from-transparent via-accent-gold to-transparent mx-auto my-6 relative"><span class="absolute -top-2.5 left-1/2 transform -translate-x-1/2 bg-[#fbe8ec] px-2 text-accent-gold text-xs">◇</span></div>
+                    <p class="font-serif text-xs tracking-widest uppercase text-accent-gold mb-3">Faltan tan solo</p>
+                    <div class="grid grid-cols-4 gap-2 sm:gap-4 max-w-xs sm:max-w-sm mx-auto">
+                        <div class="glass-card p-3 rounded-2xl text-center border border-rose-200"><span id="days" class="block font-serif text-2xl sm:text-3xl font-bold text-accent-dark">00</span><span class="text-[10px] sm:text-xs text-accent-gold font-medium uppercase tracking-wider">Días</span></div>
+                        <div class="glass-card p-3 rounded-2xl text-center border border-rose-200"><span id="hours" class="block font-serif text-2xl sm:text-3xl font-bold text-accent-dark">00</span><span class="text-[10px] sm:text-xs text-accent-gold font-medium uppercase tracking-wider">Hs</span></div>
+                        <div class="glass-card p-3 rounded-2xl text-center border border-rose-200"><span id="minutes" class="block font-serif text-2xl sm:text-3xl font-bold text-accent-dark">00</span><span class="text-[10px] sm:text-xs text-accent-gold font-medium uppercase tracking-wider">Min</span></div>
+                        <div class="glass-card p-3 rounded-2xl text-center border border-rose-200"><span id="seconds" class="block font-serif text-2xl sm:text-3xl font-bold text-accent-dark">00</span><span class="text-[10px] sm:text-xs text-accent-gold font-medium uppercase tracking-wider">Seg</span></div>
                     </div>
                 </div>
             </div>
         </section>
-
         <div class="section-divider"></div>
-
-        <!-- ================= SECCIÓN 2: EL LUGAR ================= -->
         <section class="glass-card rounded-3xl p-6 sm:p-8 text-center fade-in-up">
-            <div class="w-12 h-12 rounded-full bg-rose-100/80 flex items-center justify-center mx-auto mb-4 text-accent-gold shadow-sm">
-                <i class="fa-solid fa-location-dot text-xl"></i>
-            </div>
+            <div class="w-12 h-12 rounded-full bg-rose-100/80 flex items-center justify-center mx-auto mb-4 text-accent-gold shadow-sm"><i class="fa-solid fa-location-dot text-xl"></i></div>
             <p class="font-script text-2xl text-accent-gold">Los espero en</p>
             <h2 class="font-serif text-2xl sm:text-3xl text-accent-dark font-bold my-2">Eh Eventos</h2>
-            
-            <div class="bg-white/80 rounded-2xl p-4 my-6 border border-rose-200 inline-block w-full max-w-md shadow-sm">
-                <p class="font-semibold text-accent-dark text-base sm:text-lg">Vidart 3865, Rawson</p>
-                <p class="text-xs text-accent-gold mt-1">San Juan, Argentina</p>
-            </div>
-
-            <div class="flex flex-col sm:flex-row gap-3 justify-center max-w-md mx-auto">
-                <a href="https://maps.google.com/?q=Vidart+3865+Rawson+San+Juan" target="_blank" rel="noopener noreferrer" 
-                   class="golden-btn py-3.5 px-6 rounded-2xl font-medium text-sm flex items-center justify-center gap-2">
-                    <i class="fa-solid fa-map-location-dot"></i>
-                    Ver en Google Maps
-                </a>
-                <a href="https://m.uber.com/ul/?action=setPickup&dropoff[formatted_address]=Vidart%203865%2C%20Rawson" target="_blank" rel="noopener noreferrer"
-                   class="bg-white text-accent-dark hover:bg-rose-50 border border-rose-200 py-3.5 px-6 rounded-2xl font-medium text-sm flex items-center justify-center gap-2 transition-all">
-                    <i class="fa-solid fa-car"></i>
-                    Pedir un Uber
-                </a>
-            </div>
+            <div class="bg-white/80 rounded-2xl p-4 my-6 border border-rose-200 inline-block w-full max-w-md shadow-sm"><p class="font-semibold text-accent-dark text-base sm:text-lg">Vidart 3865, Rawson</p><p class="text-xs text-accent-gold mt-1">San Juan, Argentina</p></div>
+            <div class="flex flex-col sm:flex-row gap-3 justify-center max-w-md mx-auto"><a href="https://maps.google.com/?q=Vidart+3865+Rawson+San+Juan" target="_blank" rel="noopener noreferrer" class="golden-btn py-3.5 px-6 rounded-2xl font-medium text-sm flex items-center justify-center gap-2"><i class="fa-solid fa-map-location-dot"></i>Ver en Google Maps</a><a href="https://m.uber.com/ul/?action=setPickup&dropoff[formatted_address]=Vidart%203865%2C%20Rawson" target="_blank" rel="noopener noreferrer" class="bg-white text-accent-dark hover:bg-rose-50 border border-rose-200 py-3.5 px-6 rounded-2xl font-medium text-sm flex items-center justify-center gap-2 transition-all"><i class="fa-solid fa-car"></i>Pedir un Uber</a></div>
         </section>
-
         <div class="section-divider"></div>
-
-        <!-- ================= SECCIÓN 3: CONFIRMACIÓN DE ASISTENCIA ================= -->
         <section class="glass-card rounded-3xl p-6 sm:p-8 text-center fade-in-up">
-            <div class="w-12 h-12 rounded-full bg-rose-100/80 flex items-center justify-center mx-auto mb-4 text-accent-gold shadow-sm">
-                <i class="fa-solid fa-envelope-open-text text-xl"></i>
-            </div>
+            <div class="w-12 h-12 rounded-full bg-rose-100/80 flex items-center justify-center mx-auto mb-4 text-accent-gold shadow-sm"><i class="fa-solid fa-envelope-open-text text-xl"></i></div>
             <h2 class="font-serif text-2xl sm:text-3xl text-accent-dark font-bold mb-2">Confirmación de Asistencia</h2>
             <p class="text-xs text-accent-gold mb-6">Por favor confirma tu presencia antes del 01 de Octubre</p>
-
-            <form id="rsvpForm" onsubmit="sendRSVP(event)" class="max-w-md mx-auto text-left space-y-4">
-                <div>
-                    <label class="block text-xs font-semibold text-accent-dark mb-1 uppercase tracking-wider">Nombre Completo</label>
-                    <input type="text" id="guestName" required placeholder="Ej: María González"
-                        class="w-full px-4 py-3 rounded-xl bg-white/90 border border-rose-200 focus:outline-none focus:ring-2 focus:ring-accent-gold/50 text-sm">
-                </div>
-
-                <div>
-                    <label class="block text-xs font-semibold text-accent-dark mb-1 uppercase tracking-wider">¿Asistirás?</label>
-                    <div class="grid grid-cols-2 gap-3">
-                        <label class="flex items-center justify-center p-3 rounded-xl bg-white/90 border border-rose-200 cursor-pointer hover:bg-white transition-all">
-                            <input type="radio" name="attendance" value="Sí, ¡ahí estaré!" checked class="text-accent-gold focus:ring-accent-gold">
-                            <span class="ml-2 text-sm font-medium text-accent-dark">¡Sí, voy!</span>
-                        </label>
-                        <label class="flex items-center justify-center p-3 rounded-xl bg-white/90 border border-rose-200 cursor-pointer hover:bg-white transition-all">
-                            <input type="radio" name="attendance" value="No podré asistir" class="text-accent-gold focus:ring-accent-gold">
-                            <span class="ml-2 text-sm font-medium text-accent-dark">No podré</span>
-                        </label>
-                    </div>
-                </div>
-
-                <div>
-                    <label class="block text-xs font-semibold text-accent-dark mb-1 uppercase tracking-wider">Restricciones Alimentarias / Mensaje</label>
-                    <input type="text" id="dietary" placeholder="Ej: Celíaco, vegetariano, alergia..."
-                        class="w-full px-4 py-3 rounded-xl bg-white/90 border border-rose-200 focus:outline-none focus:ring-2 focus:ring-accent-gold/50 text-sm">
-                </div>
-
-                <button type="submit" class="w-full golden-btn py-3.5 rounded-2xl font-semibold text-sm flex items-center justify-center gap-2 mt-6">
-                    <i class="fa-brands fa-whatsapp text-lg"></i>
-                    Confirmar por WhatsApp
-                </button>
-            </form>
+            <form id="rsvpForm" onsubmit="sendRSVP(event)" class="max-w-md mx-auto text-left space-y-4"><div><label class="block text-xs font-semibold text-accent-dark mb-1 uppercase tracking-wider">Nombre Completo</label><input type="text" id="guestName" required placeholder="Ej: María González" class="w-full px-4 py-3 rounded-xl bg-white/90 border border-rose-200 focus:outline-none focus:ring-2 focus:ring-accent-gold/50 text-sm"></div><div><label class="block text-xs font-semibold text-accent-dark mb-1 uppercase tracking-wider">¿Asistirás?</label><div class="grid grid-cols-2 gap-3"><label class="flex items-center justify-center p-3 rounded-xl bg-white/90 border border-rose-200 cursor-pointer hover:bg-white transition-all"><input type="radio" name="attendance" value="Sí, ¡ahí estaré!" checked class="text-accent-gold focus:ring-accent-gold"><span class="ml-2 text-sm font-medium text-accent-dark">¡Sí, voy!</span></label><label class="flex items-center justify-center p-3 rounded-xl bg-white/90 border border-rose-200 cursor-pointer hover:bg-white transition-all"><input type="radio" name="attendance" value="No podré asistir" class="text-accent-gold focus:ring-accent-gold"><span class="ml-2 text-sm font-medium text-accent-dark">No podré</span></label></div></div><div><label class="block text-xs font-semibold text-accent-dark mb-1 uppercase tracking-wider">Restricciones Alimentarias / Mensaje</label><input type="text" id="dietary" placeholder="Ej: Celíaco, vegetariano, alergia..." class="w-full px-4 py-3 rounded-xl bg-white/90 border border-rose-200 focus:outline-none focus:ring-2 focus:ring-accent-gold/50 text-sm"></div><button type="submit" class="w-full golden-btn py-3.5 rounded-2xl font-semibold text-sm flex items-center justify-center gap-2 mt-6"><i class="fa-brands fa-whatsapp text-lg"></i>Confirmar por WhatsApp</button></form>
         </section>
-
         <div class="section-divider"></div>
-
-        <!-- ================= SECCIÓN 4: EL REGALO ================= -->
-        <section class="glass-card rounded-3xl p-6 sm:p-8 text-center fade-in-up">
-            <div class="w-12 h-12 rounded-full bg-rose-100/80 flex items-center justify-center mx-auto mb-4 text-accent-gold shadow-sm">
-                <i class="fa-solid fa-gift text-xl"></i>
-            </div>
-            <h2 class="font-script text-4xl text-accent-dark mb-3">Un detalle</h2>
-            
-            <p class="text-sm leading-relaxed text-accent-dark max-w-md mx-auto mb-6">
-                Para mí, el mejor regalo es compartir este día con vos. Si de todas formas querés tener un detalle conmigo, te dejo mi Alias:
-            </p>
-
-            <div class="bg-white/80 rounded-2xl p-5 border border-rose-200 max-w-md mx-auto space-y-3 shadow-sm">
-                <div class="text-left px-4 py-2">
-                    <span class="block text-[10px] text-accent-gold uppercase font-semibold">Titular</span>
-                    <span class="font-semibold text-accent-dark">Catalina Isabel Haro Valdez</span>
-                </div>
-                <div class="flex items-center justify-between bg-rose-50/80 px-4 py-3 rounded-xl border border-rose-100">
-                    <div class="text-left">
-                        <span class="block text-[10px] text-accent-gold uppercase font-semibold">Alias CBU</span>
-                        <span id="aliasText" class="font-mono font-bold text-accent-dark text-base">catalina.haro0</span>
-                    </div>
-                    <button onclick="copyToClipboard('catalina.haro0', 'Alias copiado')" class="golden-btn p-2.5 rounded-lg text-xs flex items-center gap-1.5">
-                        <i class="fa-regular fa-copy"></i>
-                        <span>Copiar</span>
-                    </button>
-                </div>
-
-            </div>
-        </section>
-
+        <section class="glass-card rounded-3xl p-6 sm:p-8 text-center fade-in-up"><div class="w-12 h-12 rounded-full bg-rose-100/80 flex items-center justify-center mx-auto mb-4 text-accent-gold shadow-sm"><i class="fa-solid fa-gift text-xl"></i></div><h2 class="font-script text-4xl text-accent-dark mb-3">Un detalle</h2><p class="text-sm leading-relaxed text-accent-dark max-w-md mx-auto mb-6">Para mí, el mejor regalo es compartir este día con vos. Si de todas formas querés tener un detalle conmigo, te dejo mi Alias:</p><div class="bg-white/80 rounded-2xl p-5 border border-rose-200 max-w-md mx-auto space-y-3 shadow-sm"><div class="text-left px-4 py-2"><span class="block text-[10px] text-accent-gold uppercase font-semibold">Titular</span><span class="font-semibold text-accent-dark">Catalina Isabel Haro Valdez</span></div><div class="flex items-center justify-between bg-rose-50/80 px-4 py-3 rounded-xl border border-rose-100"><div class="text-left"><span class="block text-[10px] text-accent-gold uppercase font-semibold">Alias CBU</span><span id="aliasText" class="font-mono font-bold text-accent-dark text-base">catalina.haro0</span></div><button onclick="copyToClipboard('catalina.haro0', 'Alias copiado')" class="golden-btn p-2.5 rounded-lg text-xs flex items-center gap-1.5"><i class="fa-regular fa-copy"></i><span>Copiar</span></button></div></div></section>
         <div class="section-divider"></div>
-
-        <!-- ================= SECCIÓN 5: CARGAR FOTOS Y VIDEOS ================= -->
-        <section class="glass-card rounded-3xl p-6 sm:p-8 text-center fade-in-up">
-            <div class="w-12 h-12 rounded-full bg-rose-100/80 flex items-center justify-center mx-auto mb-4 text-accent-gold">
-                <i class="fa-solid fa-camera-retro text-xl"></i>
-            </div>
-            <h2 class="font-serif text-2xl sm:text-3xl text-accent-dark font-bold uppercase mb-2">Compartí tus Recuerdos</h2>
-            <p class="text-xs text-accent-gold mb-6">Seleccioná tus fotos y videos, cargalas, así a Catalina le quedan guardadas de recuerdo para siempre</p>
-
-            <div class="max-w-md mx-auto text-left">
-                <label for="fileInput" class="block text-xs font-semibold text-accent-dark mb-1 uppercase tracking-wider">SELECCIONAR FOTOS O VIDEOS</label>
-                <input type="file" id="fileInput" multiple accept="image/*,video/*" class="hidden">
-
-                <a href="https://forms.gle/4h7begSecGyYrSYC9" target="_blank" rel="noopener noreferrer"
-                    class="golden-btn mt-5 mx-auto flex w-full items-center justify-center gap-2 rounded-2xl py-4 text-base font-semibold">
-                    <i class="fa-solid fa-camera-retro text-lg"></i>
-                    Cargar aqui tus fotos
-                </a>
-            </div>
-        </section>
-
-        <footer class="text-center pt-8 text-accent-gold">
-            <p class="font-script text-4xl text-accent-dark">¡Te espero para celebrar!</p>
-            <p class="mt-2 text-xs opacity-75">Catalina • Mis XV Años</p>
-            <p class="mt-1 text-[9px] opacity-75">Creado por Menta Diseños 2644056815</p>
-        </footer>
-
+        <section class="glass-card rounded-3xl p-6 sm:p-8 text-center fade-in-up"><div class="w-12 h-12 rounded-full bg-rose-100/80 flex items-center justify-center mx-auto mb-4 text-accent-gold"><i class="fa-solid fa-camera-retro text-xl"></i></div><h2 class="font-serif text-2xl sm:text-3xl text-accent-dark font-bold uppercase mb-2">Compartí tus Recuerdos</h2><p class="text-xs text-accent-gold mb-6">Seleccioná tus fotos y videos, cargalas, así a Catalina le quedan guardadas de recuerdo para siempre</p><div class="max-w-md mx-auto text-left"><label for="fileInput" class="block text-xs font-semibold text-accent-dark mb-1 uppercase tracking-wider">SELECCIONAR FOTOS O VIDEOS</label><input type="file" id="fileInput" multiple accept="image/*,video/*" class="hidden"><a href="https://forms.gle/4h7begSecGyYrSYC9" target="_blank" rel="noopener noreferrer" class="golden-btn mt-5 mx-auto flex w-full items-center justify-center gap-2 rounded-2xl py-4 text-base font-semibold"><i class="fa-solid fa-camera-retro text-lg"></i>Cargar aqui tus fotos</a></div></section>
+        <footer class="text-center pt-8 text-accent-gold"><p class="font-script text-4xl text-accent-dark">¡Te espero para celebrar!</p><p class="mt-2 text-xs opacity-75">Catalina • Mis XV Años</p><p class="mt-1 text-[9px] opacity-75">Creado por Menta Diseños 2644056815</p></footer>
     </div>
 
     <script>
-        // ================= MARIPOSAS ANIMADAS DE LA IMAGEN =================
         const canvas = document.getElementById('butterflyCanvas');
         const ctx = canvas.getContext('2d');
         const welcomeScreen = document.getElementById('welcomeScreen');
@@ -389,256 +162,19 @@
         const backgroundMusic = document.getElementById('backgroundMusic');
         const musicToggle = document.getElementById('musicToggle');
         const musicIcon = document.getElementById('musicIcon');
-       const butterflyImages = [
-    "./mariposa-rosa1.png",
-    "./mariposa-dorada.png"
-].map((source) => {
-    const image = new Image();
-
-    image.onerror = () => {
-        console.warn(`No se pudo cargar la imagen: ${source}`);
-    };
-
-    image.src = source;
-    return image;
-});
-
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
-
-        class Butterfly {
-            constructor() {
-                this.reset();
-            }
-
-            reset() {
-                this.x = Math.random() * canvas.width;
-                this.y = canvas.height + 40;
-                this.size = Math.random() * 40 + 55;
-                this.image = butterflyImages[Math.floor(Math.random() * butterflyImages.length)];
-                this.speedY = Math.random() * 1.2 + 0.6;
-                this.speedX = (Math.random() - 0.5) * 1.2;
-                this.wingFlap = Math.random() * Math.PI;
-                this.wingSpeed = Math.random() * 0.15 + 0.12;
-                this.angle = (Math.random() - 0.5) * 0.3;
-                this.opacity = Math.random() * 0.4 + 0.6;
-            }
-
-            update() {
-                this.y -= this.speedY;
-                this.x += Math.sin(this.y * 0.015) * 1.2 + this.speedX;
-                this.wingFlap += this.wingSpeed;
-
-                if (this.y < -50 || this.x < -50 || this.x > canvas.width + 50) {
-                    this.reset();
-                }
-            }
-
-            draw() {
-                ctx.save();
-                ctx.translate(this.x, this.y);
-                ctx.rotate(this.angle + Math.sin(this.y * 0.02) * 0.1);
-                ctx.globalAlpha = this.opacity;
-                const flapScale = 0.82 + Math.abs(Math.cos(this.wingFlap)) * 0.18;
-                const width = this.size;
-                const height = width * (this.image.naturalHeight / this.image.naturalWidth);
-                if (this.image.complete && this.image.naturalWidth > 0) {
-                    ctx.scale(flapScale, 1);
-                    ctx.drawImage(this.image, -width / 2, -height / 2, width, height);
-                }
-                ctx.restore();
-            }
-
-            drawWing(side, flapScale) {
-                ctx.save();
-                ctx.scale(side * Math.abs(flapScale), 1);
-
-                const s = this.size;
-
-                // --- Ala Superior ---
-                ctx.beginPath();
-                ctx.moveTo(0, -s * 0.2);
-                ctx.bezierCurveTo(s * 0.6, -s * 1.1, s * 1.3, -s * 0.5, s * 0.9, s * 0.1);
-                ctx.bezierCurveTo(s * 0.6, s * 0.3, s * 0.2, s * 0.1, 0, 0);
-
-                // Degradado rosa / crema / albaricoque idéntico a la imagen
-                const gradUpper = ctx.createRadialGradient(s * 0.2, -s * 0.2, s * 0.05, s * 0.5, -s * 0.3, s * 0.9);
-                gradUpper.addColorStop(0, '#f9c5d1');
-                gradUpper.addColorStop(0.5, '#f7aa97');
-                gradUpper.addColorStop(0.85, '#fff6eb');
-                gradUpper.addColorStop(1, '#cd8247');
-                ctx.fillStyle = gradUpper;
-                ctx.fill();
-
-                // Borde oscuro y detalles de manchas blancas estilo Monarca
-                ctx.lineWidth = s * 0.08;
-                ctx.strokeStyle = '#4a2318';
-                ctx.stroke();
-
-                // Venas de la mariposa
-                ctx.beginPath();
-                ctx.moveTo(0, 0);
-                ctx.quadraticCurveTo(s * 0.4, -s * 0.4, s * 0.8, -s * 0.4);
-                ctx.moveTo(0, 0);
-                ctx.quadraticCurveTo(s * 0.3, -s * 0.1, s * 0.7, 0);
-                ctx.lineWidth = 1;
-                ctx.strokeStyle = 'rgba(74, 35, 24, 0.4)';
-                ctx.stroke();
-
-                // --- Ala Inferior ---
-                ctx.beginPath();
-                ctx.moveTo(0, 0);
-                ctx.bezierCurveTo(s * 0.8, s * 0.1, s * 0.9, s * 0.8, s * 0.3, s * 0.9);
-                ctx.bezierCurveTo(s * 0.05, s * 0.85, 0, s * 0.4, 0, 0);
-
-                const gradLower = ctx.createRadialGradient(s * 0.1, s * 0.2, s * 0.05, s * 0.3, s * 0.4, s * 0.6);
-                gradLower.addColorStop(0, '#f9c5d1');
-                gradLower.addColorStop(0.6, '#f7aa97');
-                gradLower.addColorStop(1, '#cd8247');
-                ctx.fillStyle = gradLower;
-                ctx.fill();
-
-                ctx.lineWidth = s * 0.08;
-                ctx.strokeStyle = '#4a2318';
-                ctx.stroke();
-
-                // Puntos blancos en el borde
-                ctx.fillStyle = '#ffffff';
-                ctx.beginPath();
-                ctx.arc(s * 0.75, s * 0.6, s * 0.04, 0, Math.PI * 2);
-                ctx.arc(s * 0.55, s * 0.78, s * 0.035, 0, Math.PI * 2);
-                ctx.arc(s * 0.85, -s * 0.3, s * 0.04, 0, Math.PI * 2);
-                ctx.fill();
-
-                ctx.restore();
-            }
-        }
-
+        const butterflyImages = ["./mariposa-rosa1.png", "./mariposa-dorada.png"].map((source) => { const image = new Image(); image.onerror = () => console.warn(`No se pudo cargar la imagen: ${source}`); image.src = source; return image; });
+        function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+        window.addEventListener('resize', resizeCanvas); resizeCanvas();
+        class Butterfly { constructor() { this.reset(); } reset() { this.x = Math.random() * canvas.width; this.y = canvas.height + 40; this.size = Math.random() * 40 + 55; this.image = butterflyImages[Math.floor(Math.random() * butterflyImages.length)]; this.speedY = Math.random() * 1.2 + 0.6; this.speedX = (Math.random() - 0.5) * 1.2; this.wingFlap = Math.random() * Math.PI; this.wingSpeed = Math.random() * 0.15 + 0.12; this.angle = (Math.random() - 0.5) * 0.3; this.opacity = Math.random() * 0.4 + 0.6; } update() { this.y -= this.speedY; this.x += Math.sin(this.y * 0.015) * 1.2 + this.speedX; this.wingFlap += this.wingSpeed; if (this.y < -50 || this.x < -50 || this.x > canvas.width + 50) this.reset(); } draw() { ctx.save(); ctx.translate(this.x, this.y); ctx.rotate(this.angle + Math.sin(this.y * 0.02) * 0.1); ctx.globalAlpha = this.opacity; const flapScale = 0.82 + Math.abs(Math.cos(this.wingFlap)) * 0.18; const width = this.size; const height = width * (this.image.naturalHeight / this.image.naturalWidth); if (this.image.complete && this.image.naturalWidth > 0) { ctx.scale(flapScale, 1); ctx.drawImage(this.image, -width / 2, -height / 2, width, height); } ctx.restore(); } }
         const butterflies = Array.from({ length: 12 }, () => new Butterfly());
-
-        function animateButterflies() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            butterflies.forEach(b => {
-                b.update();
-                b.draw();
-            });
-            requestAnimationFrame(animateButterflies);
-        }
-
-        window.onload = function() {
-            animateButterflies();
-            startCountdown();
-        };
-
-        openInvitation.addEventListener("click", async () => {
-            backgroundMusic.currentTime = 10;
-            backgroundMusic.volume = 0.35;
-
-            try {
-                await backgroundMusic.play();
-            } catch (error) {
-                showToast("Tocá nuevamente para reproducir la música");
-            }
-
-            welcomeScreen.classList.add("is-hidden");
-            musicToggle.hidden = false;
-        });
-
-        musicToggle.addEventListener("click", async () => {
-            if (backgroundMusic.paused) {
-                try {
-                    await backgroundMusic.play();
-                    musicIcon.className = "fa-solid fa-volume-high text-lg";
-                    musicToggle.setAttribute("aria-label", "Pausar música");
-                    musicToggle.setAttribute("title", "Pausar música");
-                } catch (error) {
-                    showToast("No se pudo reproducir la música");
-                }
-            } else {
-                backgroundMusic.pause();
-                musicIcon.className = "fa-solid fa-volume-xmark text-lg";
-                musicToggle.setAttribute("aria-label", "Reproducir música");
-                musicToggle.setAttribute("title", "Reproducir música");
-            }
-        });
-
-        // ================= CUENTA REGRESIVA =================
-        function startCountdown() {
-            const targetDate = new Date("2026-10-17T21:00:00-03:00").getTime();
-
-            function updateCountdown() {
-                const now = new Date().getTime();
-                const difference = targetDate - now;
-
-                if (difference > 0) {
-                    const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-                    const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                    const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-                    const seconds = Math.floor((difference % (1000 * 60)) / 1000);
-
-                    document.getElementById("days").innerText = String(days).padStart(2, '0');
-                    document.getElementById("hours").innerText = String(hours).padStart(2, '0');
-                    document.getElementById("minutes").innerText = String(minutes).padStart(2, '0');
-                    document.getElementById("seconds").innerText = String(seconds).padStart(2, '0');
-                } else {
-                    ["days", "hours", "minutes", "seconds"].forEach((id) => {
-                        document.getElementById(id).innerText = "00";
-                    });
-                }
-            }
-
-            updateCountdown();
-            setInterval(updateCountdown, 1000);
-        }
-
-        // ================= PORTAPAPELES =================
-        function copyToClipboard(text, message) {
-            const tempInput = document.createElement("input");
-            tempInput.value = text;
-            document.body.appendChild(tempInput);
-            tempInput.select();
-            document.execCommand("copy");
-            document.body.removeChild(tempInput);
-
-            showToast(message || "Copiado al portapapeles");
-        }
-
-        function showToast(msg) {
-            const toast = document.getElementById("toast");
-            const toastMsg = document.getElementById("toastMsg");
-            toastMsg.innerText = msg;
-
-            toast.classList.remove("translate-y-20", "opacity-0");
-            toast.classList.add("translate-y-0", "opacity-100");
-
-            setTimeout(() => {
-                toast.classList.remove("translate-y-0", "opacity-100");
-                toast.classList.add("translate-y-20", "opacity-0");
-            }, 3000);
-        }
-
-        // ================= CONFIRMACIÓN WHATSAPP =================
-        function sendRSVP(e) {
-            e.preventDefault();
-            const name = document.getElementById("guestName").value;
-            const attendance = document.querySelector('input[name="attendance"]:checked').value;
-            const dietary = document.getElementById("dietary").value;
-
-            let phone = "5492646707544";
-            let text = `¡Hola Catalina! Soy ${name}. Confirmación para tus 15: ${attendance}.`;
-            
-            if (dietary.trim() !== "") {
-                text += ` Detalle/Mensaje: ${dietary}.`;
-            }
-
-            const url = `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
-            window.open(url, "_blank");
-        }
-
+        function animateButterflies() { ctx.clearRect(0, 0, canvas.width, canvas.height); butterflies.forEach(b => { b.update(); b.draw(); }); requestAnimationFrame(animateButterflies); }
+        window.onload = function() { animateButterflies(); startCountdown(); };
+        openInvitation.addEventListener("click", async () => { backgroundMusic.currentTime = 10; backgroundMusic.volume = 0.35; try { await backgroundMusic.play(); } catch (error) { showToast("Tocá nuevamente para reproducir la música"); } welcomeScreen.classList.add("is-hidden"); musicToggle.hidden = false; });
+        musicToggle.addEventListener("click", async () => { if (backgroundMusic.paused) { try { await backgroundMusic.play(); musicIcon.className = "fa-solid fa-volume-high text-lg"; musicToggle.setAttribute("aria-label", "Pausar música"); musicToggle.setAttribute("title", "Pausar música"); } catch (error) { showToast("No se pudo reproducir la música"); } } else { backgroundMusic.pause(); musicIcon.className = "fa-solid fa-volume-xmark text-lg"; musicToggle.setAttribute("aria-label", "Reproducir música"); musicToggle.setAttribute("title", "Reproducir música"); } });
+        function startCountdown() { const targetDate = new Date("2026-10-17T21:00:00-03:00").getTime(); function updateCountdown() { const difference = targetDate - Date.now(); if (difference > 0) { const days = Math.floor(difference / 86400000); const hours = Math.floor((difference % 86400000) / 3600000); const minutes = Math.floor((difference % 3600000) / 60000); const seconds = Math.floor((difference % 60000) / 1000); document.getElementById("days").innerText = String(days).padStart(2, '0'); document.getElementById("hours").innerText = String(hours).padStart(2, '0'); document.getElementById("minutes").innerText = String(minutes).padStart(2, '0'); document.getElementById("seconds").innerText = String(seconds).padStart(2, '0'); } else ["days", "hours", "minutes", "seconds"].forEach((id) => document.getElementById(id).innerText = "00"); } updateCountdown(); setInterval(updateCountdown, 1000); }
+        function copyToClipboard(text, message) { const tempInput = document.createElement("input"); tempInput.value = text; document.body.appendChild(tempInput); tempInput.select(); document.execCommand("copy"); document.body.removeChild(tempInput); showToast(message || "Copiado al portapapeles"); }
+        function showToast(msg) { const toast = document.getElementById("toast"); document.getElementById("toastMsg").innerText = msg; toast.classList.remove("translate-y-20", "opacity-0"); toast.classList.add("translate-y-0", "opacity-100"); setTimeout(() => { toast.classList.remove("translate-y-0", "opacity-100"); toast.classList.add("translate-y-20", "opacity-0"); }, 3000); }
+        function sendRSVP(e) { e.preventDefault(); const name = document.getElementById("guestName").value; const attendance = document.querySelector('input[name="attendance"]:checked').value; const dietary = document.getElementById("dietary").value; let text = `¡Hola Catalina! Soy ${name}. Confirmación para tus 15: ${attendance}.`; if (dietary.trim() !== "") text += ` Detalle/Mensaje: ${dietary}.`; window.open(`https://wa.me/5492646707544?text=${encodeURIComponent(text)}`, "_blank"); }
     </script>
 </body>
 </html>
