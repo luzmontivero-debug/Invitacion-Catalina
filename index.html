@@ -12,7 +12,7 @@
   <meta property="og:locale" content="es_AR">
   <title>Mis XV Años - Catalina</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script>
     tailwind.config = { theme: { extend: {
@@ -21,9 +21,9 @@
     }}};
   </script>
   <style>
-    :root { --bg:#fbe8ec; --gold:#a86523; --dark:#834c18; }
+    :root { --bg:#fbe8ec; --gold:#a86523; --dark:#834c18; --panel:#f5f0f1; --line:#f1c7c6; --soft:#fcecef; --button:#9d6131; --button-dark:#8a4b1d; --button-start:#b7773a; --input:#fef7f9; }
     html { scroll-behavior:smooth; }
-    body { min-height:100vh; margin:0; color:var(--gold); background-color:var(--bg); background-image:radial-gradient(circle at 10% 20%,rgba(255,225,233,.9),transparent 40%),radial-gradient(circle at 90% 80%,rgba(247,214,222,.8),transparent 50%),radial-gradient(circle at 50% 50%,rgba(255,255,255,.25),transparent 70%); background-attachment:fixed; overflow-x:hidden; }
+    body { min-height:100vh; margin:0; color:var(--gold); background-color:var(--bg); background-image:radial-gradient(circle at 10% 20%,rgba(255,225,233,.9),transparent 40%),radial-gradient(circle at 90% 80%,rgba(255,238,243,.9),transparent 40%); }
     .glass-card { background:rgba(255,255,255,.75); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); border:1px solid rgba(255,255,255,.85); box-shadow:0 10px 30px rgba(168,101,35,.08); }
     .golden-btn { background:linear-gradient(135deg,#a86523,#834c18); color:#fff; transition:.3s; box-shadow:0 4px 15px rgba(131,76,24,.25); }
     .golden-btn:hover { transform:translateY(-2px); background:linear-gradient(135deg,#b8722b,#93561c); }
@@ -33,15 +33,244 @@
     .upload-panel h2 { color:var(--dark); font-family:Cinzel,serif; font-size:clamp(1.8rem,5vw,2.35rem); font-weight:600; margin:0 0 .55rem; }
     .upload-panel p { max-width:570px; margin:0 auto; color:var(--gold); font-size:.8rem; line-height:1.45; }
     .upload-label { display:block; max-width:448px; margin:1.35rem auto 0; color:var(--dark); font-size:.78rem; font-weight:600; letter-spacing:.08em; text-align:left; text-transform:uppercase; }
-    .upload-button { display:flex; align-items:center; justify-content:center; gap:.55rem; width:100%; max-width:448px; min-height:60px; margin:1.2rem auto 0; border-radius:1rem; font-size:1rem; font-weight:600; text-decoration:none; }
-    @media (max-width:480px) { .upload-panel { padding:1.8rem 1rem; } }
+    .upload-button { display:flex; align-items:center; justify-content:center; gap:.55rem; width:100%; max-width:448px; min-height:60px; margin:1.2rem auto 0; border-radius:1rem; font-size:1rem; font-weight:600; }
+
+    .gift-panel, .confirm-panel {
+      background:rgba(255,250,251,.78);
+      border:1px solid rgba(255,255,255,.9);
+      border-radius:2rem;
+      box-shadow:0 15px 35px rgba(168,101,35,.1);
+      padding:2.2rem 2rem 2rem;
+      text-align:center;
+    }
+    .gift-panel {
+      max-width:860px;
+      margin:0 auto;
+    }
+    .icon-badge {
+      width:3.2rem;
+      height:3.2rem;
+      border-radius:9999px;
+      background:rgba(244, 197, 212, .7);
+      color:var(--gold);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      margin:0 auto 1.2rem;
+      font-size:1.4rem;
+      box-shadow:0 0 0 1px rgba(168,101,35,.08);
+    }
+    .gift-title {
+      font-size:clamp(2.1rem,4vw,3rem);
+      font-family:'Alex Brush', cursive;
+      color:var(--gold);
+      line-height:1.1;
+      margin:0;
+    }
+    .gift-copy {
+      max-width:620px;
+      margin:1rem auto 0;
+      color:var(--gold);
+      font-size:1.02rem;
+      line-height:1.7;
+    }
+    .gift-data {
+      max-width:540px;
+      margin:1.5rem auto 0;
+      border:1px solid var(--line);
+      border-radius:1rem;
+      background:rgba(255,255,255,.34);
+      padding:1.2rem 1.1rem 1rem;
+      text-align:left;
+    }
+    .gift-data dt {
+      color:var(--gold);
+      font-size:.7rem;
+      font-weight:700;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      margin-bottom:.45rem;
+    }
+    .gift-data dd {
+      margin:0 0 1rem;
+      color:var(--dark);
+      font-size:clamp(1.1rem,2.2vw,2.1rem);
+      font-weight:700;
+      letter-spacing:-.02em;
+      line-height:1.3;
+    }
+    .gift-data dd:last-child {
+      margin-bottom:0;
+    }
+    .alias-row {
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:1rem;
+      padding:0.4rem 0 0; 
+    }
+    .alias-value {
+      letter-spacing:0;
+      font-size:clamp(1rem,1.8vw,1.75rem);
+      color:var(--dark);
+      font-weight:700;
+      overflow-wrap:anywhere;
+      word-break:break-word;
+    }
+    .copy-button {
+      flex-shrink:0;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:.45rem;
+      background:linear-gradient(135deg,#a86523,#834c18);
+      color:#fff;
+      border:none;
+      border-radius:.8rem;
+      font-weight:700;
+      font-size:.78rem;
+      padding:.72rem .95rem;
+      cursor:pointer;
+      box-shadow:0 6px 18px rgba(131,76,24,.22);
+    }
+    .copy-button:hover { filter:brightness(1.04); }
+
+    .confirm-panel {
+      max-width:860px;
+      margin:0 auto;
+      padding:2.2rem 2rem 2.5rem;
+    }
+    .confirm-title {
+      margin:0;
+      font-size:clamp(2.3rem,4vw,3.2rem);
+      letter-spacing:.02em;
+      line-height:1.1;
+      font-family:'Alex Brush', cursive;
+      color:var(--gold);
+    }
+    .confirm-subtitle {
+      margin:0.9rem auto 1.7rem;
+      max-width:560px;
+      color:var(--gold);
+      font-size:1.02rem;
+      font-weight:400;
+      line-height:1.5;
+    }
+    .field-group {
+      max-width:520px;
+      margin:0 auto 1.25rem;
+      text-align:left;
+    }
+    .field-label {
+      display:block;
+      margin:0 0 .6rem;
+      color:var(--dark);
+      font-size:.8rem;
+      letter-spacing:.12em;
+      font-weight:700;
+      text-transform:uppercase;
+    }
+    .text-input {
+      width:100%;
+      border:1px solid #f2b8b7;
+      background:rgba(255,255,255,.18);
+      border-radius:.8rem;
+      color:var(--dark);
+      font-size:1.05rem;
+      padding:1rem 1.1rem;
+      outline:none;
+      box-sizing:border-box;
+      box-shadow:inset 0 0 0 1px rgba(255,255,255,.28);
+    }
+    .text-input::placeholder { color:#d7a38b; }
+    .text-input:focus { border-color:#e5958d; box-shadow:0 0 0 3px rgba(229,149,141,.12); }
+
+    .radio-row {
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:1rem;
+      max-width:520px;
+      margin:0 auto;
+    }
+    .choice-option {
+      position:relative;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:.7rem;
+      min-height:56px;
+      padding:0 1rem;
+      background:rgba(255,255,255,.18);
+      border:1px solid #f2b8b7;
+      border-radius:.8rem;
+      color:var(--dark);
+      font-size:1.05rem;
+      font-weight:600;
+      cursor:pointer;
+      transition:.2s ease;
+    }
+    .choice-option input {
+      appearance:none;
+      -webkit-appearance:none;
+      width:18px;
+      height:18px;
+      border:2px solid #b3b3b3;
+      border-radius:50%;
+      margin:0;
+      position:relative;
+      background:#fff;
+      transition:.2s ease;
+    }
+    .choice-option input:checked {
+      border-color:#4d8fe0;
+      box-shadow:0 0 0 1px rgba(77,143,224,.3);
+    }
+    .choice-option input:checked::after {
+      content:"";
+      position:absolute;
+      inset:3px;
+      border-radius:50%;
+      background:#4d8fe0;
+    }
+    .choice-option.selected {
+      border-color:#f2b8b7;
+      box-shadow:inset 0 0 0 1px rgba(255,255,255,.3);
+    }
+
+    .submit-button {
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:.7rem;
+      width:100%;
+      max-width:500px;
+      margin:1.6rem auto 0;
+      border:none;
+      border-radius:1.3rem;
+      background:linear-gradient(135deg,#a86523,#834c18);
+      color:#fff;
+      font-size:1.05rem;
+      font-weight:700;
+      height:3.7rem;
+      box-shadow:0 10px 20px rgba(133,73,22,.18);
+      cursor:pointer;
+    }
+    .submit-button:hover { filter:brightness(1.04); }
+
+    @media (max-width:640px) {
+      .gift-panel, .confirm-panel { padding:1.7rem 1rem 1.4rem; }
+      .alias-row { flex-direction:column; align-items:stretch; }
+      .copy-button { width:100%; }
+      .radio-row { grid-template-columns:1fr; }
+      .field-label { letter-spacing:.08em; }
+    }
   </style>
 </head>
 <body class="font-sans">
   <canvas id="butterflyCanvas" aria-hidden="true"></canvas>
   <main class="relative z-10 max-w-2xl mx-auto px-4 py-8 space-y-8">
     <section class="glass-card rounded-3xl p-4 sm:p-6 text-center">
-      <img src="./portada-1.png" alt="Mis XV Años Catalina" class="w-full max-h-[420px] rounded-2xl object-contain mx-auto" onerror="this.onerror=null;this.src='https://placehold.co/900x1200/fbe8ec/834c18?text=XV+Años'">
+      <img src="./portada-1.png" alt="Mis XV Años Catalina" class="w-full max-h-[420px] rounded-2xl object-contain mx-auto" onerror="this.onerror=null;this.src='https://placehold.co/900x1200/fbe8ec/834c18?text=Mis+XV+A%C3%B1os+-+Catalina';">
       <p class="font-script text-3xl text-accent-gold mt-5">¡Estás invitado a celebrar conmigo!</p>
       <p class="font-serif text-sm text-accent-dark mt-3">Sábado, 17 de Octubre de 2026 - 21:00 hs</p>
     </section>
@@ -63,12 +292,73 @@
 
     <div class="section-divider"></div>
 
+    <section id="regalo" class="gift-panel">
+      <div class="icon-badge">
+        <i class="fa-solid fa-gift" aria-hidden="true"></i>
+      </div>
+      <h2 class="gift-title">Un detalle</h2>
+      <p class="gift-copy">Para mí, el mejor regalo es compartir este día con vos. Si de todas formas querés tener un detalle conmigo, te dejo mi Alias:</p>
+      <dl class="gift-data">
+        <dt>Titular</dt>
+        <dd>Catalina Isabel Haro Valdez</dd>
+        <dt>Alias CBU</dt>
+        <dd class="alias-row">
+          <span class="alias-value" id="alias-cbu">catalina.haro0</span>
+          <button type="button" class="copy-button" id="copy-alias">
+            <i class="fa-regular fa-copy" aria-hidden="true"></i>
+            Copiar
+          </button>
+        </dd>
+      </dl>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <section id="confirmar-asistencia" class="confirm-panel">
+      <div class="icon-badge">
+        <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+      </div>
+      <h2 class="confirm-title">CONFIRMACIÓN DE ASISTENCIA</h2>
+      <p class="confirm-subtitle">Por favor confirma tu presencia antes del 01 de Octubre</p>
+
+      <div class="field-group">
+        <label class="field-label" for="nombre">Nombre completo</label>
+        <input class="text-input" id="nombre" type="text" placeholder="Ej: María González">
+      </div>
+
+      <div class="field-group">
+        <span class="field-label">¿Asistirás?</span>
+        <div class="radio-row">
+          <label class="choice-option selected">
+            <input type="radio" name="asistencia" checked>
+            <span>Sí, voy!</span>
+          </label>
+          <label class="choice-option">
+            <input type="radio" name="asistencia">
+            <span>No podré</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="mensaje">Restricciones alimentarias / mensaje</label>
+        <input class="text-input" id="mensaje" type="text" placeholder="Ej: Celíaco, vegetariano, alergia...">
+      </div>
+
+      <button type="button" class="submit-button">
+        <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+        Confirmar por WhatsApp
+      </button>
+    </section>
+
+    <div class="section-divider"></div>
+
     <section class="glass-card rounded-3xl p-6 text-center">
       <i class="fa-solid fa-location-dot mb-3 text-2xl text-accent-gold"></i>
       <p class="font-script text-2xl">Los espero en</p>
       <h2 class="font-serif text-2xl font-bold text-accent-dark">Eh Eventos</h2>
       <p class="my-5 rounded-2xl border border-rose-200 bg-white/80 p-4 font-semibold text-accent-dark">Vidart 3865, Rawson, San Juan</p>
-      <a class="golden-btn inline-flex rounded-full px-5 py-3 text-sm font-semibold" href="https://maps.google.com/?q=Vidart+3865+Rawson+San+Juan" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-map-location-dot mr-2"></i>Ver mapa</a>
+      <a class="golden-btn inline-flex rounded-full px-5 py-3 text-sm font-semibold" href="https://maps.google.com/?q=Vidart+3865+Rawson+San+Juan" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-map-location-dot mr-2" aria-hidden="true"></i>Ver ubicación</a>
     </section>
 
     <footer class="pb-10 text-center"><p class="font-script text-4xl text-accent-dark">¡Te espero para celebrar!</p><p class="mt-2 text-xs opacity-75">Catalina • Mis XV Años</p></footer>
@@ -79,7 +369,34 @@
     addEventListener('resize',resizeCanvas);resizeCanvas();
     const images=['./mariposa-rosa1.png','./mariposa-dorada.png'].map(src=>{const image=new Image();image.src=src;return image;});
     const butterflies=Array.from({length:18},()=>({x:Math.random()*innerWidth,y:Math.random()*innerHeight,size:25+Math.random()*30,speed:(Math.random()-.5)*.8,image:images[Math.floor(Math.random()*images.length)],phase:Math.random()*Math.PI*2}));
-    function animate(){ctx.clearRect(0,0,canvas.width,canvas.height);butterflies.forEach(b=>{b.x+=b.speed;b.y+=Math.sin(Date.now()/900+b.phase)*.15;if(b.x<-40)b.x=canvas.width+40;if(b.x>canvas.width+40)b.x=-40;if(b.image.complete)ctx.drawImage(b.image,b.x,b.y,b.size,b.size);});requestAnimationFrame(animate);} animate();
+    function animate(){ctx.clearRect(0,0,canvas.width,canvas.height);butterflies.forEach(b=>{b.x+=b.speed;b.y+=Math.sin(Date.now()/900+b.phase)*.15;if(b.x<-40)b.x=canvas.width+40;if(b.x>canvas.width+40)b.x=-40;ctx.globalAlpha=.72;ctx.drawImage(b.image,b.x,b.y,b.size,b.size);});ctx.globalAlpha=1;requestAnimationFrame(animate);}
+    animate();
+
+    const copyButton=document.getElementById('copy-alias');
+    copyButton.addEventListener('click', async () => {
+      const alias = document.getElementById('alias-cbu').textContent.trim();
+      try {
+        await navigator.clipboard.writeText(alias);
+      } catch (e) {
+        const helper = document.createElement('input');
+        helper.value = alias;
+        document.body.appendChild(helper);
+        helper.select();
+        document.execCommand('copy');
+        helper.remove();
+      }
+      const original = copyButton.innerHTML;
+      copyButton.innerHTML = '<i class="fa-solid fa-check" aria-hidden="true"></i> Copiado';
+      setTimeout(() => { copyButton.innerHTML = original; }, 1500);
+    });
+
+    document.querySelectorAll('.choice-option').forEach(option => {
+      option.addEventListener('click', () => {
+        document.querySelectorAll('.choice-option').forEach(item => item.classList.remove('selected'));
+        option.classList.add('selected');
+        option.querySelector('input').checked = true;
+      });
+    });
   </script>
 </body>
 </html>
